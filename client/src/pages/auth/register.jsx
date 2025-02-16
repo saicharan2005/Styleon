@@ -1,8 +1,8 @@
 import CommonForm from "@/components/common/form";
 import { registerFormControls } from "@/config";
 import { useToast } from "@/hooks/use-toast";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { registerUser } from "@/store/auth-slice";
+
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,18 +14,6 @@ const initialState = {
   password:''
 }
 
-export const registerUser = createAsyncThunk('/auth/register',
-  async (formData) => {
-    const response = await axios.post(
-      "http://localhost:5001/api/auth/register",
-      formData,
-      {
-        withCredentials: true,
-      }
-    );
-    return response.data
-  }
-)
 
 
 function AuthRegister() {
@@ -40,12 +28,18 @@ function AuthRegister() {
     dispatch(registerUser(formData)).then((data) => {
       console.log(data)
       if (data?.payload?.success) {
-        toast({
-          title: data?.payload?.message
-        });
+         toast({
+           title: data?.payload?.message,
+         });
         navigate('/auth/login')
           console.log(data);
+      } else {
+        toast({
+          title: data?.payload?.message,
+          variant:"destructive"
+       });
       }
+       
         
     }
     )
