@@ -3,11 +3,13 @@ const express = require('express')
 const mongoose = require("mongoose");
 const app = express()
 
+const authRouter =require('./routes/auth/auth-routes')
+
 const cors = require('cors')
 const cookieParser =require('cookie-parser')
 
 mongoose.connect(
-  "mongodb+srv://charanreddykunduru123:charan123@cluster0.gh2dw.mongodb.net/"
+
 ).then(() => {
     console.log("connected sucessfully");
     
@@ -18,7 +20,7 @@ mongoose.connect(
 
 app.use(
   cors({
-      origin: "http://localhost:5173/",
+      origin: "http://localhost:5173",
       methods: ['GET', 'POST', 'DELETE', 'PUT'],
       allowedHeaders: [
           "content-Type",
@@ -34,7 +36,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json())
 
-
+app.use('/api/auth',authRouter)
 
 
 

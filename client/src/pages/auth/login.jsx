@@ -12,8 +12,8 @@ import { Link } from "react-router-dom";
 
 const initialState = {
 
-  email: 'nanin@iare.ac.in',
-  password:'12345678'
+  email: '',
+  password:''
 }
 
 

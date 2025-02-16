@@ -122,7 +122,7 @@ function CommonForm({
           ))
         }
       </div>
-      <Button type="submit" className="mt-2 w-full">
+      <Button type="submit" className="mt-2 w-full cursor-pointer">
         {buttonText || "Submit"}
       </Button>
     </form>

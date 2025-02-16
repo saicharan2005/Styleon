@@ -1,4 +1,6 @@
+import { registerUser } from "@/pages/auth/register";
 import { createSlice } from "@reduxjs/toolkit";
+
 
 
 
@@ -15,7 +17,24 @@ const authSlice = createSlice({
         setUser: (state, action) => {
             
         }
+    },
+    extraReducers: (builder) => {
+        builder
+          .addCase(registerUser.pending, (state) => {
+            state.isloading = true;
+          })
+          .addCase(registerUser.fulfilled, (state) => {
+            state.isloading = false;
+            state.user = null;
+            state.isAuthenicated = false;
+          })
+          .addCase(registerUser.rejected, (state) => {
+            state.isloading = false;
+            state.user = null;
+            state.isAuthenicated = false;
+          });
     }
+
 
 })
 
