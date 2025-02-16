@@ -9,7 +9,7 @@ const cors = require('cors')
 const cookieParser =require('cookie-parser')
 
 mongoose.connect(
-  "mongodb+srv://charanreddykunduru123:charan123@cluster0.gh2dw.mongodb.net/"
+ 
 ).then(() => {
     console.log("connected sucessfully");
     
