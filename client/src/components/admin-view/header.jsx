@@ -1,7 +1,10 @@
 
 
 function AdminHeader() {
-  return <div> admin header</div>;
+  return (
+   <div>h</div>
+  );
+  
 }
 
 export default AdminHeader;

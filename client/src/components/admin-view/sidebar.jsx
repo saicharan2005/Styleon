@@ -1,11 +1,9 @@
 
 
-
-
 function AdminSideBar() {
   return (
-    <div>admin sidebar</div>
-  )
+   <div>s</div>
+  );
 }
 
 export default AdminSideBar

@@ -9,7 +9,6 @@ const cors = require('cors')
 const cookieParser =require('cookie-parser')
 
 mongoose.connect(
- 
 ).then(() => {
     console.log("connected sucessfully");
     
