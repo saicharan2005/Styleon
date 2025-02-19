@@ -58,7 +58,7 @@ function CommonForm({
             value={value}
           >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder={controlItem.placeholder}></SelectValue>
+              <SelectValue placeholder={controlItem.label}/>
             </SelectTrigger>
             <SelectContent>
               {controlItem.options && controlItem.options.length > 0
@@ -66,7 +66,7 @@ function CommonForm({
                     <SelectItem
                       key={optionItem.id}
                       value={optionItem.id}
-                    ></SelectItem>
+                  > {optionItem.label}</SelectItem>
                   ))
                 : null}
             </SelectContent>
