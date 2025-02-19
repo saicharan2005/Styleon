@@ -1,48 +1,46 @@
-
-const express = require('express')
+require("dotenv").config();
+const express = require("express");
 const mongoose = require("mongoose");
-const app = express()
+const app = express();
 
-const authRouter =require('./routes/auth/auth-routes')
+const authRouter = require("./routes/auth/auth-routes");
 
-const cors = require('cors')
-const cookieParser =require('cookie-parser')
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
-mongoose.connect(
-  "mongodb+srv://charanreddykunduru123:charan123@cluster0.gh2dw.mongodb.net/"
-).then(() => {
+mongoose
+  .connect(
+    process.env.MONGO_URI
+  )
+  .then(() => {
     console.log("connected sucessfully");
-    
-}).catch((error) => {
+  })
+  .catch((error) => {
     console.log(error);
-});
-
+  });
 
 app.use(
   cors({
-      origin: "http://localhost:5173",
-      methods: ['GET', 'POST', 'DELETE', 'PUT'],
-      allowedHeaders: [
-          "content-Type",
-          "Authorization",
-          'Cache-Control',
-          'Expires',
-          'Pragma'
-      ],
-      credentials:true
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    allowedHeaders: [
+      "content-Type",
+      "Authorization",
+      "Cache-Control",
+      "Expires",
+      "Pragma",
+    ],
+    credentials: true,
   })
 );
 
 app.use(cookieParser());
-app.use(express.json())
+app.use(express.json());
 
-app.use('/api/auth',authRouter)
+app.use("/api/auth", authRouter);
 
-
-
-const PORT = process.env.PORT || 5001
+const PORT = process.env.PORT || 5001;
 
 app.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`);
-    
-})
+  console.log(`server is running on port ${PORT}`);
+});
