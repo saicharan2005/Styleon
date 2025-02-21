@@ -7,11 +7,7 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET, // Click 'View API Keys' above to copy your API secret
 });
-// cloudinary.config({
-//   cloud_name: "dotuulq7u",
-//   api_key: "654114655189677",
-//   api_secret: "HcwNc4KbdPrT0-szGwlEjGIty00", // Click 'View API Keys' above to copy your API secret
-// });
+
 
 
 
