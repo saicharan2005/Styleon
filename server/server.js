@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 const authRouter = require("./routes/auth/auth-routes");
+const adminProductRouter =require("./routes/admin/products-routes")
 
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -38,6 +39,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use("/api/auth", authRouter);
+app.use("/api/admin/products",adminProductRouter)
 
 const PORT = process.env.PORT || 5001;
 

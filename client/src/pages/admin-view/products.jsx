@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/sheet";
 import { addProductFormElements } from "@/config";
 
+
 import { Fragment, useState } from "react";
 
 const intialFormData = {
@@ -28,10 +29,18 @@ function AdminProducts() {
     useState(false);
   const [formData, setFormData] = useState(intialFormData);
   const [imageFile, setImageFile] = useState(null);
-  // const [uploadImageUrl,setUploadImageUrl]=useState('')
+  const [uploadImageUrl, setUploadImageUrl] = useState('')
+    const [imageLoadingState, SetImageLoadingState] = useState(false);
 
 
-  function onSubmit() {}
+  function onSubmit() {
+    console.log(
+    formData
+    );
+    
+  }
+  console.log(formData);
+    
   return (
     <Fragment>
       <div className="mb-5 w-full flex justify-end">
@@ -50,7 +59,14 @@ function AdminProducts() {
           <SheetHeader>
             <SheetTitle>Add New Product</SheetTitle>
           </SheetHeader>
-          <ProductImageUpload imageFile={imageFile} setImageFile={ setImageFile} />
+          <ProductImageUpload
+            imageFile={imageFile}
+            setImageFile={setImageFile}
+            uploadImageUrl={uploadImageUrl}
+            setUploadImageUrl={setUploadImageUrl}
+            imageLoadingState={imageLoadingState}
+            SetImageLoadingState={SetImageLoadingState}
+          />
           <div className="py-6 ">
             <CommonForm
               onSubmit={onSubmit}
