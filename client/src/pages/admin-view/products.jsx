@@ -1,5 +1,5 @@
-
 import ProductImageUpload from "@/components/admin-view/image-upload";
+import AdminProductTile from "@/components/admin-view/product-tile";
 import CommonForm from "@/components/common/form";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,7 +11,6 @@ import {
 import { addProductFormElements } from "@/config";
 import { useToast } from "@/hooks/use-toast";
 import { addNewProduct, fetchAllProducts } from "@/store/admin/products-slice";
-
 
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,50 +31,44 @@ function AdminProducts() {
     useState(false);
   const [formData, setFormData] = useState(intialFormData);
   const [imageFile, setImageFile] = useState(null);
-  const [uploadImageUrl, setUploadImageUrl] = useState('')
+  const [uploadImageUrl, setUploadImageUrl] = useState("");
   const [imageLoadingState, SetImageLoadingState] = useState(false);
   const { productList } = useSelector((state) => state.adminProducts);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const { toast } = useToast();
-  
-
 
   function onSubmit(event) {
-
     event.preventDefault();
-    dispatch(addNewProduct({
-      ...formData,
-      image: uploadImageUrl,
-    })).then((data)=> {
+    dispatch(
+      addNewProduct({
+        ...formData,
+        image: uploadImageUrl,
+      })
+    ).then((data) => {
       console.log(data);
       if (data?.payload?.success) {
-        dispatch(fetchAllProducts())
-        setOpenCreateProductsDialog(false)
-        setImageFile(null)
-        setFormData(intialFormData)
+        dispatch(fetchAllProducts());
+        setOpenCreateProductsDialog(false);
+        setImageFile(null);
+        setFormData(intialFormData);
         toast({
-           title:'Product Added successfully'
-         })
-
+          title: "Product Added successfully",
+        });
       }
-      
-    })
+    });
 
-
-// console.log(
-//     formData
-//     );
-    
+    // console.log(
+    //     formData
+    //     );
   }
 
   useEffect(() => {
-    dispatch(fetchAllProducts())
-  }, [dispatch])
+    dispatch(fetchAllProducts());
+  }, [dispatch]);
 
-  
-  console.log(productList,"product list");
-    
+  console.log(productList, "product list");
+
   return (
     <Fragment>
       <div className="mb-5 w-full flex justify-end">
@@ -83,7 +76,15 @@ function AdminProducts() {
           Add New Product
         </Button>
       </div>
-      <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4 "></div>
+      {/*  place holder for products */}
+      <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4 ">
+        {productList && productList.length > 0
+          ? productList.map((productItem) => (
+              <AdminProductTile product={productItem} />
+            ))
+          : null}
+      </div>
+
       <Sheet
         open={openCreateproductsDialog}
         onOpenChange={() => {
