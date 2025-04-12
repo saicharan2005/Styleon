@@ -4,16 +4,14 @@ const mongoose = require("mongoose");
 const app = express();
 
 const authRouter = require("./routes/auth/auth-routes");
-const adminProductRouter = require("./routes/admin/products-routes")
-const shopProductRouter=require("./routes/shop/products-routes")
+const adminProductRouter = require("./routes/admin/products-routes");
+const shopProductRouter = require("./routes/shop/products-routes");
 
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
 mongoose
-  .connect(
-    process.env.MONGO_URI
-  )
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("connected sucessfully");
   })
@@ -40,8 +38,8 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use("/api/auth", authRouter);
-app.use("/api/admin/products", adminProductRouter)
-app.use("/api/shop/products",shopProductRouter)
+app.use("/api/admin/products", adminProductRouter);
+app.use("/api/shop/products", shopProductRouter);
 
 const PORT = process.env.PORT || 5001;
 
