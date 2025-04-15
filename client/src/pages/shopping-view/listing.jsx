@@ -4,6 +4,8 @@ import ShoppingProductTile from "@/components/shopping-view/product-tile";
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { sortOptions } from "@/config";
+import { useToast } from "@/hooks/use-toast";
+import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 import { fetchAllFilteredProducts, fetchProductsDetails } from "@/store/shop/products-slice";
 
 
@@ -42,6 +44,9 @@ function ShoppingListing() {
   const [searchParams, setSearchParams] = useSearchParams()
   
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+  const { user } = useSelector((state) => state.auth)
+  const { toast } = useToast();
+
 
   function handleSort(value) {
     setSort(value);
@@ -81,9 +86,28 @@ function ShoppingListing() {
   }
 
    function handleGetProductDetails(getCurrentProductId) {
-     console.log(getCurrentProductId);
+    //  console.log(getCurrentProductId);
      dispatch(fetchProductsDetails(getCurrentProductId ));
    }
+  
+  
+  
+  
+  function handleAddtoCart(getCurrentProductId) {
+    console.log(getCurrentProductId);
+    dispatch(addToCart({ userId: user?.id, productId: getCurrentProductId, quantity: 1 })).then(data => {
+      if(data?.payload?.success) {
+        dispatch(fetchCartItems({ userId: user?.id }))
+        toast({
+          title: "Product Added to Cart",
+        });
+        
+      }
+    }
+    );
+    
+      
+  }
 
   useEffect(() => {
     setSort("price-lowtohigh");
@@ -112,10 +136,12 @@ function ShoppingListing() {
     }
   }, [productDetails]);
 
+ 
   // console.log(productList);
   // console.log(filters, "filters");
   // console.log(searchParams.toString(),"searchParams")
-    console.log(productDetails, "product details");
+  // console.log(productDetails, "product details");
+
 
 
   return (
@@ -158,13 +184,22 @@ function ShoppingListing() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
           {productList && productList.length > 0
             ? productList.map((productItem) => (
-                <ShoppingProductTile key={productItem.id} product={productItem}  handleGetProductDetails={handleGetProductDetails}/>
+                <ShoppingProductTile
+                  key={productItem.id}
+                  product={productItem}
+                  handleGetProductDetails={handleGetProductDetails}
+                  handleAddtoCart={handleAddtoCart}
+                />
               ))
             : null}
         </div>
       </div>
 
-      <ProductDetailsDialog open={ openDetailsDialog} setOpen={setOpenDetailsDialog} productDetails={productDetails} />
+      <ProductDetailsDialog
+        open={openDetailsDialog}
+        setOpen={setOpenDetailsDialog}
+        productDetails={productDetails}
+      />
     </div>
   );
 }
