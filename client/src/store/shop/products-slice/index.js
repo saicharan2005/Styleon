@@ -1,4 +1,4 @@
-import ProductFilter from "@/components/shopping-view/filter";
+
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
