@@ -1,5 +1,6 @@
 import Address from "@/components/shopping-view/address";
-import Orders from "@/components/shopping-view/orders";
+import Shoppingorders from "@/components/shopping-view/orders";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 
@@ -22,7 +23,7 @@ function ShoppingAccount() {
             </TabsList>
 
             <TabsContent value="orders"> 
-              <Orders/>
+              <Shoppingorders/>
             </TabsContent>
             <TabsContent value="address">
               <Address/>

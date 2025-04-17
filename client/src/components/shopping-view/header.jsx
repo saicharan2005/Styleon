@@ -83,6 +83,7 @@ function HeaderRightContent() {
         </Button>
         <UserCartWrapper
           cartItems={cartItems}
+          setOpenCartSheet={setOpenCartSheet}
         />
       </Sheet>
 

@@ -1,17 +1,18 @@
-import { useState } from "react";
-import { Button } from "../ui/button";
+
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Dialog } from "../ui/dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
-import ShoppingorderDetailsView from "./order-details";
+import { Button } from "../ui/button";
+import { Dialog } from "../ui/dialog";
+import { useState } from "react";
+import AdminorderDetailsView from "./order-details";
 
+function AdminordersView() {
 
-function Shoppingorders() {
-    const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+  const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Order History</CardTitle>
+        <CardTitle>All Order</CardTitle>
       </CardHeader>
 
       <CardContent>
@@ -34,14 +35,9 @@ function Shoppingorders() {
             <TableCell>InProcess</TableCell>
             <TableCell>$1000</TableCell>
             <TableCell>
-              <Dialog
-                open={openDetailsDialog}
-                onOpenChange={setOpenDetailsDialog}
-              >
-                <Button onClick={() => setOpenDetailsDialog(true)}>
-                  View Details
-                </Button>
-                <ShoppingorderDetailsView />
+              <Dialog open={openDetailsDialog} onOpenChange={setOpenDetailsDialog}>
+                <Button onClick={() => setOpenDetailsDialog(true)}>View Details</Button>
+                <AdminorderDetailsView/>
               </Dialog>
             </TableCell>
           </TableBody>
@@ -51,4 +47,4 @@ function Shoppingorders() {
   );
 }
 
-export default Shoppingorders;
+export default AdminordersView;
