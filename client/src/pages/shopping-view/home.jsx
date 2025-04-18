@@ -5,7 +5,7 @@ import bannerThree from "../../assets/images/banner03.avif";
 import bannerFour from "../../assets/images/banner04.avif";
 import { Airplay, BabyIcon, ChevronLeftIcon, ChevronRightIcon, CloudLightningIcon, Heater, Images, Section, Shirt, ShirtIcon, ShoppingBasket, UmbrellaIcon, WashingMachine, WatchIcon } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { use, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { fetchAllFilteredProducts, fetchProductsDetails } from "@/store/shop/products-slice";
 import { useDispatch, useSelector } from "react-redux";
 import ShoppingProductTile from "@/components/shopping-view/product-tile";

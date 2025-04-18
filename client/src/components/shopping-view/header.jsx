@@ -67,7 +67,7 @@ function HeaderRightContent() {
     
   }, [dispatch]);
   
-  console.log(cartItems,"cartItems");
+  console.log(cartItems.items,"cartItems");
   
 
   return (

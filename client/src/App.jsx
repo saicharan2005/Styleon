@@ -20,6 +20,9 @@ import { useEffect } from "react";
 import { checkAuth } from "./store/auth-slice";
 import { Skeleton } from "./components/ui/skeleton";
 
+import StripeReturnPage from "./pages/shopping-view/stripe-return";
+import PaymentSuccessPage from "./pages/shopping-view/payment-success";
+
 function App() {
   //  
   
@@ -81,8 +84,10 @@ function App() {
           <Route path="listing" element={<ShoppingListing />} />
           <Route path="checkout" element={<ShoppingCheckout />} />
           <Route path="account" element={<ShoppingAccount />} />
+          <Route path="stripe-return" element={<StripeReturnPage />} />
+          <Route path="payment-success" element={<PaymentSuccessPage/>} />
         </Route>
-         <Route  path="unauth-page"  element={<UnauthPage/>}/>
+        <Route path="unauth-page" element={<UnauthPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

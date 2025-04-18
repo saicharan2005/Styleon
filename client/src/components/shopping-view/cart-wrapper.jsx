@@ -7,8 +7,8 @@ import UserCartItemsContent from "./cart-items-content";
 function UserCartWrapper({ cartItems, setOpenCartSheet }) {
   const navigate = useNavigate();
   const totalCartAmount =
-    cartItems && cartItems.length > 0
-      ? cartItems.reduce(
+   cartItems && cartItems.items && cartItems.items.length > 0
+      ? cartItems.items.reduce(
           (sum, currItem) =>
             sum + (currItem.salePrice || currItem.price) * currItem.quantity,
           0
@@ -22,9 +22,9 @@ function UserCartWrapper({ cartItems, setOpenCartSheet }) {
       <div className="mt-8 space-y-4">
         {
           // eslint-disable-next-line react/prop-types
-          cartItems && cartItems.length > 0 ? (
+         cartItems && cartItems.items && cartItems.items.length > 0 ? (
             // eslint-disable-next-line react/jsx-key, react/prop-types
-            cartItems.map((item) => <UserCartItemsContent cartItem={item} />)
+            cartItems.items.map((item) => <UserCartItemsContent cartItem={item} />)
           ) : (
             <div className="text-center text-muted-foreground">
               Your cart is empty.
